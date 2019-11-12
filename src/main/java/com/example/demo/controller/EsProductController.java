@@ -78,7 +78,7 @@ public class EsProductController {
     @RequestMapping(value = "/search/all", method = RequestMethod.GET)
     @ResponseBody
     public CommonResult list() {
-
+   //jjjjjjjjjjjjjjjjjjjjjj
         Page<Article> page = (Page<Article>) esProductService.search();
         return CommonResult.success(CommonPage.restPage(page.getContent()));
     }
