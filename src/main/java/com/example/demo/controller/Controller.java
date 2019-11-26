@@ -89,7 +89,7 @@ public class Controller extends BaseController{
 //
         String errorMsg=resJson.getString("errorMsg");
         int bb=resJson.getInt("errorCode");
-        System.out.println(errorMsg);
+        System.out.println(aa);
         if(bb==0) {
 
             JSONObject stdCcaBillQueryOwe = JSONObject.fromObject(JSONObject.fromObject(resJson.getString("stdCcaBillQueryOwe")));

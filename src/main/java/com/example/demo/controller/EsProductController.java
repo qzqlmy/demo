@@ -14,7 +14,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import static com.example.demo.HttpClientUtil.doPost;
+import static com.example.demo.HttpClientUtil.doPostJson;
 
 /**
  * 搜索商品管理Controller
@@ -81,5 +86,28 @@ public class EsProductController {
    //jjjjjjjjjjjjjjjjjjjjjj
         Page<Article> page = (Page<Article>) esProductService.search();
         return CommonResult.success(CommonPage.restPage(page.getContent()));
+    }
+
+    public static void main(String[] args) {
+        String url="http://135.192.71.87:8888/lip/Blsd/Blsd.qh?ts=NzY2NTg4NTYyMDM1MTphYzJlNDIxNTIzMTI3YjJhZDJiMzI4NjI1OTIzODJlNTJkMTI4YjJiMzJlZDI1YzI=";
+       Map<String, String> para=new HashMap<String, String>();
+//        para.put("ns_order_no","11111111");
+//        para.put("orderNo","222222");
+//        para.put("backOrderState","333333333");
+//        para.put("backOrderTime","44444444");
+//        para.put("backOrderDesc","555555555");
+//        para.put("backOrderPStaffCode","333333333");
+//        String aa= doPost(url, para);
+       // System.out.println(para.size());
+        String json=" {\n" +
+                "\t\t\t\t\t\t\t\"ns_order_no\": \"111111\"," +
+                "\t\t\t\t\t\t\t\"orderNo\": \"22222222\"," +
+                "\t\t\t\t\t\t\t\"backOrderState\": \"3333333\"," +
+                "\t\t\t\t\t\t\t\"backOrderTime\": \"444444444\"," +
+                "\t\t\t\t\t\t    \"backOrderDesc\":  \"555555555\"," +
+                "\t\t\t\t\t\t\t\"backOrderPStaffCode\":  \"666666666\"" +
+                "\t\t\t\t\t\t}";
+        String aa= doPostJson(url, json);
+        System.out.println(aa);
     }
 }

@@ -1,12 +1,19 @@
 package com.example.demo.controller;
 
 import com.example.demo.Model.Book;
+import net.sf.json.JSONObject;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.jms.JMSException;
 import javax.jms.ObjectMessage;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
+
+import static com.example.demo.HttpClientUtil.doPostJson;
 
 @RestController
 public class CustomerController {
@@ -48,5 +55,63 @@ public class CustomerController {
         String templateId = map.get("templateId").toString();
 
         System.out.println("aaaa:"+map);
+    }
+
+    public static void main(String[] args) {
+        String val = "";
+         Random random = new Random();
+          for (int i = 0; i < 10; i++) {
+          val += String.valueOf(random.nextInt(10));
+            }
+        String date=new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+        String ExchangeId="BLSDXT"+date+val;
+        System.out.println(ExchangeId);
+        String main_number="18909704911";
+        String slstaff="734056";
+        String xxstaf="734056";
+        String remake=main_number+"订购月租优惠（全额免）";
+        System.out.println(remake);
+        String url="http://135.192.94.107:8001/api/http/InsertITipNsInfo/1.0?access_token=YjA1NzQ2ZGJkNmEzYTMwYzkwYzQ0NGE0NGMwMzM3ODI=";
+        String json="{\n" +
+                "\"Root\":{\n" +
+                "\t\"Header\":{\n" +
+                "\t\"ExchangeId\":\""+ExchangeId+"\",\n" +
+                "\t\"BizCode\":\"InsertITipNsInfo\",\n" +
+                "\t\"ClientId\":\"BLSDXT\",\n" +
+                "\t\"Password\":\"BLSDXT\"\n" +
+                "\t},\n" +
+                "\"OrderRequest\":{\n" +
+                "\"accNum\":\""+main_number+"\",\n" +
+                "\"staffcode\":\""+slstaff+"\",\n" +
+                "\"partyStaffCode\":\""+xxstaf+"\",\n" +
+                "\"orderSource\":\"4003\",\n" +
+                "\"remark\":\""+remake+"\",\n" +
+                "}\n" +
+                "}\n" +
+                "}\n";
+        String aa= doPostJson(url, json);
+       System.out.println(aa);
+        JSONObject resJson = JSONObject.fromObject(aa);
+        String Root=resJson.getString("Root");
+        JSONObject Header = JSONObject.fromObject(Root);
+        String Result=Header.getString("Result");
+        JSONObject Header2 = JSONObject.fromObject(Result);
+        String Response1=Header2.getString("data");
+        JSONObject Codee = JSONObject.fromObject(Response1);
+       // System.out.println(Codee);
+        String resultCode=Codee.getString("resultCode");
+        String ns_order_no=Codee.getString("ns_order_no");
+        //System.out.println("Code"+Code);
+        if(resultCode.equals("000")){
+            System.out.println("受理成功！");
+            Map<String, Object> parama=new HashMap<String, Object>();
+            parama.put("ExchangeId",ExchangeId);
+            parama.put("main_number",main_number);
+            parama.put("slstaff",slstaff);
+            parama.put("xxstaf",xxstaf);
+            parama.put("ns_order_no",remake);
+            parama.put("ns_order_no",ns_order_no);
+        }
+
     }
 }
