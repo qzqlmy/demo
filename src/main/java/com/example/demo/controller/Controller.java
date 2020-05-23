@@ -55,7 +55,7 @@ public class Controller extends BaseController{
     /**
      * 消息生产者
      */
-    @RequestMapping("/send")
+    @PostMapping("/send")
     public void send() {
         //指定消息发送的目的地及内容
         HashMap map=new HashMap();
@@ -120,7 +120,7 @@ public class Controller extends BaseController{
 
 
     }
-    @RequestMapping("/sendd")
+    @PostMapping("/sendd")
     public void sendd() {
         Book user = new Book();
         user.setId(11);
@@ -146,7 +146,7 @@ public class Controller extends BaseController{
 
 
     }
-    @RequestMapping("/senda")
+    @PostMapping("/senda")
     @ApiOperation(value="使用activemq发送消息",notes = "用activemq发送消息,后台监听发送过去的消息")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "phoneNumbers", value = "电话号码" ),
@@ -167,6 +167,7 @@ public class Controller extends BaseController{
         });
     }
     @GetMapping("/hi")  //如果方法上的RequestMapping没有value，则此方法默认被父路径调用
+    @ApiOperation(value="使用redis保存消息",notes = "使用redis保存消息")
     public String index(){
         Book user = new Book();
         user.setId(11);
@@ -207,7 +208,7 @@ public class Controller extends BaseController{
         return null;
     }
 
-    @RequestMapping("/usersa/{userIda}")
+    @PostMapping("/usersa/{userIda}")
     @ApiOperation("根据id获取用户ces")
     @ApiImplicitParam(name = "userIda", value = "模板ID" )
 
@@ -240,7 +241,7 @@ public class Controller extends BaseController{
         //return CommonResult.failed("请求失败");
         return CommonResult.success(aa);
     }
-    @RequestMapping("/users/{userId}")
+    @PostMapping("/users/{userId}")
     @ApiOperation("根据id获取用户")
     @ApiImplicitParam(name = "userId", value = "模板ID" )
 
@@ -274,7 +275,7 @@ public class Controller extends BaseController{
     }
 
 
-    @RequestMapping("/queryfoodlista")
+    @PostMapping("/queryfoodlista")
     @ApiOperation(value="分页查询后台数据",notes = "分页查询数据并给前台返回一个json")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "limit", value = "每页显示条数" ),
@@ -287,7 +288,7 @@ public class Controller extends BaseController{
         System.out.println(foodname);
 //        String page = request.getParameter("page");
 //        String limit = request.getParameter("limit");
-//        int cc=(Integer.parseInt( request.getParameter("limit")));
+//        int cc=(Integer.parseInt( request.getParameter("limit")));///////
 //        int pagecruent =(Integer.parseInt( request.getParameter("page"))-1)*cc;
 
         int cc=Integer.parseInt( limit);
