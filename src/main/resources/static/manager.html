@@ -5,7 +5,7 @@
     <title>oss文件管理</title>
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.11.2/jquery.js"></script>
     <script type="text/javascript">
-        var pre = 'https://gaojun-testbucket.oss-cn-shanghai.aliyuncs.com/';
+        var pre = 'https://qzqdlmy.oss-cn-beijing.aliyuncs.com/';
         $(function () {
             listfile();
         });
@@ -13,12 +13,12 @@
         //文件列表
         function listfile() {
             $.ajax({
-                url: "http://localhost:8080/file/list",
+                url: "http://localhost:8083/file/list",
                 type: 'POST',
                 success: function (rtn) {
                     console.log(rtn.length);
                     for (var i = 0; i < rtn.length; i++) {
-                        $('div').append('<img src="' + pre + rtn[i].key + '" style="width: 300px;height: 300px; padding: 10px" οndblclick="deletefile(this.src)" οnclick="downloadfile(this.src)"></img>')
+                        $('div').append('<img src="' + pre + rtn[i].key + '" style="width: 300px;height: 300px; padding: 10px" ondblclick="deletefile(this.src)" onclick="downloadfile(this.src)" ></img>')
                     }
                 }
             });
@@ -28,7 +28,7 @@
         function downloadfile(src) {
 
             var fileName = src.split(pre)[1];
-            window.location.href = "http://localhost:8080/file/download?fileName=" + fileName;
+            window.location.href = "http://localhost:8083/file/download?fileName=" + fileName;
         }
 
         //文件删除
@@ -36,7 +36,7 @@
             var fileName = src.split(pre)[1];
             var param = {fileName: fileName};
             $.ajax({
-                url: "http://localhost:8080/file/delete",
+                url: "http://localhost:8083/file/delete",
                 data: param,
                 success: function () {
                     alert('删除成功',fileName);

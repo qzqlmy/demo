@@ -66,29 +66,61 @@ public class CustomerController {
         String date=new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
         String ExchangeId="BLSDXT"+date+val;
         System.out.println(ExchangeId);
-        String main_number="18909704911";
-        String slstaff="734056";
-        String xxstaf="734056";
-        String remake=main_number+"订购月租优惠（全额免）";
+        String main_number="18909718131";
+        String slstaff="avdsfasfdsf";
+        String xxstaf="avdsfasfdsf";
+        String remake=main_number+"订购月租优惠（测试测试测试 数据啊 别信）";
         System.out.println(remake);
-        String url="http://135.192.94.107:8001/api/http/InsertITipNsInfo/1.0?access_token=YjA1NzQ2ZGJkNmEzYTMwYzkwYzQ0NGE0NGMwMzM3ODI=";
-        String json="{\n" +
-                "\"Root\":{\n" +
+        String url="http://135.192.93.101:8000/api/http/InsertITipNsInfo/1.0?access_token=MGFkODUxMGE3YWU1NGNhMGE2YjliNzQzZjM5MjgxMjk=";
+//        String json="{\n" +
+//                "\"Root\":{\n" +
+//                "\t\"Header\":{\n" +
+//                "\t\"ExchangeId\":\""+ExchangeId+"\",\n" +
+//                "\t\"BizCode\":\"InsertITipNsInfo\",\n" +
+//                "\t\"ClientId\":\"BLSDXT\",\n" +
+//                "\t\"Password\":\"BLSDXT\"\n" +
+//                "\t},\n" +
+//                "\"OrderRequest\":{\n" +
+//                "\"accNum\":\""+main_number+"\",\n" +
+//                "\"staffcode\":\""+slstaff+"\",\n" +
+//                "\"partyStaffCode\":\""+xxstaf+"\",\n" +
+//                "\"orderSource\":\"4003\",\n" +
+//                "\"remark\":\""+remake+"\",\n" +
+//                "}\n" +
+//                "}\n" +
+//                "}\n";
+//        String json="{\"Root\":{\n" +
+//                "\t\"Header\":{\n" +
+//                "\t\"ExchangeId\":\""+ExchangeId+"\",\n" +
+//                "\t\"BizCode\":\"InsertITipNsInfo\",\n" +
+//                "\t\"ClientId\":\"BLSDXT\",\n" +
+//                "\t\"Password\":\"BLSDXT\"\n" +
+//                "\t},\n" +
+//                "\t\"OrderRequest\":{\n" +
+//                "\t\"accNum\":\""+main_number+"\",\n" +
+//                "\t\"staffcode\":\""+slstaff+"\",\n" +
+//                "\t\"partyStaffCode\":\""+xxstaf+"\",\n" +
+//                "\t\"orderSource\":\"4000\",\n" +
+//                "\t\"remark\"::\""+remake+"\",\n" +
+//                "\t}\n" +
+//                "\t}\n" +
+//                "}\n";
+        String json="{\"Root\":{\n" +
                 "\t\"Header\":{\n" +
                 "\t\"ExchangeId\":\""+ExchangeId+"\",\n" +
                 "\t\"BizCode\":\"InsertITipNsInfo\",\n" +
                 "\t\"ClientId\":\"BLSDXT\",\n" +
                 "\t\"Password\":\"BLSDXT\"\n" +
                 "\t},\n" +
-                "\"OrderRequest\":{\n" +
-                "\"accNum\":\""+main_number+"\",\n" +
-                "\"staffcode\":\""+slstaff+"\",\n" +
-                "\"partyStaffCode\":\""+xxstaf+"\",\n" +
-                "\"orderSource\":\"4003\",\n" +
-                "\"remark\":\""+remake+"\",\n" +
-                "}\n" +
-                "}\n" +
-                "}\n";
+                "\t\"OrderRequest\":{\n" +
+                "\t\"accNum\":\""+main_number+"\",\n" +
+                "\t\"staffcode\":\""+slstaff+"\",\n" +
+                "\t\"partyStaffCode\":\""+xxstaf+"\",\n" +
+                "\t\"orderSource\":\"4004\",\n" +
+                "\t\"remark\":\""+remake+"\"\n" +
+                "\t}\n" +
+                "\t}\n" +
+                "}";
         String aa= doPostJson(url, json);
        System.out.println(aa);
         JSONObject resJson = JSONObject.fromObject(aa);

@@ -90,8 +90,8 @@ public class EsProductController {
 
     public static void main(String[] args) {
         String url="http://135.192.71.87:8888/lip/Blsd/Blsd.qh?ts=NzY2NTg4NTYyMDM1MTphYzJlNDIxNTIzMTI3YjJhZDJiMzI4NjI1OTIzODJlNTJkMTI4YjJiMzJlZDI1YzI=";
-       Map<String, String> para=new HashMap<String, String>();
-//        para.put("ns_order_no","11111111");
+//       Map<String, String> para=new HashMap<String, String>();
+//        para.put("ns_order_no","11111119");
 //        para.put("orderNo","222222");
 //        para.put("backOrderState","333333333");
 //        para.put("backOrderTime","44444444");
@@ -99,7 +99,7 @@ public class EsProductController {
 //        para.put("backOrderPStaffCode","333333333");
 //        String aa= doPost(url, para);
        // System.out.println(para.size());
-        String json=" {\n" +
+       String json=" {\n" +
                 "\t\t\t\t\t\t\t\"ns_order_no\": \"111111\"," +
                 "\t\t\t\t\t\t\t\"orderNo\": \"22222222\"," +
                 "\t\t\t\t\t\t\t\"backOrderState\": \"3333333\"," +
