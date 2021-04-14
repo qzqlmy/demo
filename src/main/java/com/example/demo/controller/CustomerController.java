@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-import static com.example.demo.HttpClientUtil.doPostJson;
+import static com.example.demo.HttpClientUtil.*;
 
 @RestController
 public class CustomerController {
@@ -42,9 +42,7 @@ public class CustomerController {
 //            e.printStackTrace();
 //        }
 
-//————————————————
-//版权声明：本文为CSDN博主「你所有承诺」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。
-//原文链接：https://blog.csdn.net/stronglyh/article/details/81024588
+
 //
 //
 //
@@ -57,93 +55,42 @@ public class CustomerController {
         System.out.println("aaaa:"+map);
     }
 
+//    public static void main(String[] args) {
+//        String url="http://localhost:8087/iop/login";
+//        String json="";
+//        String aa= doPostJson(url, json);
+//        System.out.println(aa);
+//    }
     public static void main(String[] args) {
-        String val = "";
-         Random random = new Random();
-          for (int i = 0; i < 10; i++) {
-          val += String.valueOf(random.nextInt(10));
-            }
-        String date=new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
-        String ExchangeId="BLSDXT"+date+val;
-        System.out.println(ExchangeId);
-        String main_number="18909718131";
-        String slstaff="avdsfasfdsf";
-        String xxstaf="avdsfasfdsf";
-        String remake=main_number+"订购月租优惠（测试测试测试 数据啊 别信）";
-        System.out.println(remake);
-        String url="http://135.192.93.101:8000/api/http/InsertITipNsInfo/1.0?access_token=MGFkODUxMGE3YWU1NGNhMGE2YjliNzQzZjM5MjgxMjk=";
-//        String json="{\n" +
-//                "\"Root\":{\n" +
-//                "\t\"Header\":{\n" +
-//                "\t\"ExchangeId\":\""+ExchangeId+"\",\n" +
-//                "\t\"BizCode\":\"InsertITipNsInfo\",\n" +
-//                "\t\"ClientId\":\"BLSDXT\",\n" +
-//                "\t\"Password\":\"BLSDXT\"\n" +
-//                "\t},\n" +
-//                "\"OrderRequest\":{\n" +
-//                "\"accNum\":\""+main_number+"\",\n" +
-//                "\"staffcode\":\""+slstaff+"\",\n" +
-//                "\"partyStaffCode\":\""+xxstaf+"\",\n" +
-//                "\"orderSource\":\"4003\",\n" +
-//                "\"remark\":\""+remake+"\",\n" +
-//                "}\n" +
-//                "}\n" +
-//                "}\n";
-//        String json="{\"Root\":{\n" +
-//                "\t\"Header\":{\n" +
-//                "\t\"ExchangeId\":\""+ExchangeId+"\",\n" +
-//                "\t\"BizCode\":\"InsertITipNsInfo\",\n" +
-//                "\t\"ClientId\":\"BLSDXT\",\n" +
-//                "\t\"Password\":\"BLSDXT\"\n" +
-//                "\t},\n" +
-//                "\t\"OrderRequest\":{\n" +
-//                "\t\"accNum\":\""+main_number+"\",\n" +
-//                "\t\"staffcode\":\""+slstaff+"\",\n" +
-//                "\t\"partyStaffCode\":\""+xxstaf+"\",\n" +
-//                "\t\"orderSource\":\"4000\",\n" +
-//                "\t\"remark\"::\""+remake+"\",\n" +
-//                "\t}\n" +
-//                "\t}\n" +
-//                "}\n";
-        String json="{\"Root\":{\n" +
-                "\t\"Header\":{\n" +
-                "\t\"ExchangeId\":\""+ExchangeId+"\",\n" +
-                "\t\"BizCode\":\"InsertITipNsInfo\",\n" +
-                "\t\"ClientId\":\"BLSDXT\",\n" +
-                "\t\"Password\":\"BLSDXT\"\n" +
+        String url="http://localhost:8085/iop";
+        Map<String, String> param=new HashMap<String, String>();
+        param.put("method","QHAI_UNHQ_MarketingaddSubitemmgdService");
+        param.put("content","{\n" +
+                "\t\n" +
+                "\t\"approveFlow\": {\n" +
+                "\t\t\"operatorId\": \"1\"\n" +
+                "\t\t\n" +
                 "\t},\n" +
-                "\t\"OrderRequest\":{\n" +
-                "\t\"accNum\":\""+main_number+"\",\n" +
-                "\t\"staffcode\":\""+slstaff+"\",\n" +
-                "\t\"partyStaffCode\":\""+xxstaf+"\",\n" +
-                "\t\"orderSource\":\"4004\",\n" +
-                "\t\"remark\":\""+remake+"\"\n" +
-                "\t}\n" +
-                "\t}\n" +
-                "}";
-        String aa= doPostJson(url, json);
-       System.out.println(aa);
-        JSONObject resJson = JSONObject.fromObject(aa);
-        String Root=resJson.getString("Root");
-        JSONObject Header = JSONObject.fromObject(Root);
-        String Result=Header.getString("Result");
-        JSONObject Header2 = JSONObject.fromObject(Result);
-        String Response1=Header2.getString("data");
-        JSONObject Codee = JSONObject.fromObject(Response1);
-       // System.out.println(Codee);
-        String resultCode=Codee.getString("resultCode");
-        String ns_order_no=Codee.getString("ns_order_no");
-        //System.out.println("Code"+Code);
-        if(resultCode.equals("000")){
-            System.out.println("受理成功！");
-            Map<String, Object> parama=new HashMap<String, Object>();
-            parama.put("ExchangeId",ExchangeId);
-            parama.put("main_number",main_number);
-            parama.put("slstaff",slstaff);
-            parama.put("xxstaf",xxstaf);
-            parama.put("ns_order_no",remake);
-            parama.put("ns_order_no",ns_order_no);
-        }
+                "\t\"planId\":\"2164\",\n" +
+                "\t\n" +
+                "\t\"operatorId\":\"1\",\n" +
+                "\t\"operatorName\":\"admin\",\n" +
+                "\t\"orgId\":\"3\"\n" +
+                "}");
+        String aa= doPost(url,param);
+        System.out.println(aa);
+      JSONObject resJson = JSONObject.fromObject(aa);
+      String result=resJson.getString("result");
+      String SVC_CONTENT = JSONObject.fromObject(result).getString("SVC_CONTENT");
+      String X_RESULTCODE = JSONObject.fromObject(result).getString("X_RESULTCODE");
+      String X_RESULTINFO = JSONObject.fromObject(result).getString("X_RESULTINFO");
+      if(X_RESULTCODE.equals("0")){
+          System.out.println(SVC_CONTENT);
+      }else{
+          System.out.println("请求失败");
+      }
+
+
 
     }
 }

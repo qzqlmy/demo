@@ -74,16 +74,47 @@ public class Controller extends BaseController{
         String destinationAttr="2";
         String url="http://135.202.130.66:8099/billing/acct/GetAcctOwe";
         String json="{\n" +
-                "\t\t\t\t\t\t\t\"systemId\":\"100001\" ,\n" +
-                "                            \"stdCcrBillQueryOwe\": {\n" +
-                "                            \"billQuery\": {\n" +
-                "                            \"queryFlag\": "+queryFlag+","  +
-                "                            \"billQueryType\": "+billQueryType+","  +
-                "                            \"destinationAttr\":"+destinationAttr+"," +
-                "                            \"feeQueryFlag\": \"0\", \"destinationAccount\": " +serinumbe+
-                "                          }\n" +
-                "                         }\n" +
-                "\t\t\t\t\t\t}";
+                "  \"activeCustomer\": [\n" +
+                "    {\n" +
+                "      \"dnaTrees\": [\n" +
+                "        {\n" +
+                "          \"columnType\": \"客户身份特征\",\n" +
+                "          \"columnNum\": \"165\",\n" +
+                "          \"featureDesc\": \"[{\\\"mappingVal\\\":\\\"Y\\\",\\\"desc\\\":\\\"等于920602省公司全网长流程云MAS网信（产品）\\\"}]\",\n" +
+                "          \"calcType\": \"\\u003d\",\n" +
+                "          \"selfId\": \"94612499\",\n" +
+                "          \"selfParentId\": \"0\",\n" +
+                "          \"featureValues\": \"Y\",\n" +
+                "          \"columnName\": \"zx-01\"\n" +
+                "        }\n" +
+                "      ],\n" +
+                "      \"privilegeId\": \"140017894747\"\n" +
+                "    }\n" +
+                "  ],\n" +
+                "  \"activeBase\": {\n" +
+                "    \"subitemDescribe\": \"11111\",\n" +
+                "    \"subitemName\": false,\n" +
+                "    \"businessClass\": \"4G沉默唤醒\",\n" +
+                "    \"duty\": \"470096414\",\n" +
+                "    \"startTime\": \"实厅和批量代订购测试\",\n" +
+                "    \"endTime\": \"2020-03-31 00:00:00\",\n" +
+                "    \"hasTheme\": false,\n" +
+                "    \"strategyIds\": \"\",\n" +
+                "    \"dutyName\": \"zhouxin\"\n" +
+                "  },\n" +
+                "  \"activeProducts\": [\n" +
+                "    {\n" +
+                "      \"relyOnCustomCode\": \"\",\n" +
+                "      \"privilegeId\": \"140017894747\",\n" +
+                "      \"effectiveResponseDay\": \"0\",\n" +
+                "      \"mutexCustomCode\": \"\",\n" +
+                "      \"mutexFixedCode\": \"\",\n" +
+                "      \"privilegeName\": \"患者随访\",\n" +
+                "      \"relyOnFixedCode\": \"\"\n" +
+                "    }\n" +
+                "  ],\n" +
+                "  \"testUserPhones\": \"15297166648\"\n" +
+                "}";
        String aa= doPostJson(url, json);
         JSONObject resJson = JSONObject.fromObject(aa);
 //
@@ -176,12 +207,12 @@ public class Controller extends BaseController{
         user.setAuthor("aaaaa");
 
 
-        redisTemplateService.set("key1",user);
-        stringRedisTemplate.opsForValue().set("bbbbb", "222222222222");
-
-        Book usaa = redisTemplateService.get("key1",Book.class);
+//        redisTemplateService.set("key1",user);
+//        stringRedisTemplate.opsForValue().set("bbbbb", "222222222222");
+//
+//        Book usaa = redisTemplateService.get("key1",Book.class);
        // System.out.println( stringRedisTemplate.opsForValue().get("bbbbb"));
-        System.out.println(usaa);
+        System.out.println("aaaaaaaaaaaaaaaaaa");
 
 
         return "hello spring boot";
@@ -317,4 +348,6 @@ public class Controller extends BaseController{
        return ma;
 
 }
+
+
 }
